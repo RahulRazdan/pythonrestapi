@@ -7,7 +7,7 @@ var app = angular.module('myApp', ['ngMaterial','ngMessages']);
                     app.controller('myCtrl', function($scope,$mdDialog,$http) {  
                         
                         $scope.loadData = function(){
-                            $http.get('http://localhost:5000/users').then(
+                            $http.get('https://gentle-thicket-68214.herokuapp.com/users').then(
                                 function (response) {
                                     $scope.users = response.data;
                                 }
@@ -26,7 +26,7 @@ var app = angular.module('myApp', ['ngMaterial','ngMessages']);
                             $scope.id = id;
                         };
                         $scope.deleteUser = function(id) {
-                            $http.delete('http://localhost:5000/user/'+id).then(
+                            $http.delete('https://gentle-thicket-68214.herokuapp.com/user/'+id).then(
                                 function (response) {
                                     $mdDialog.show(
                                         $mdDialog.alert()
@@ -45,11 +45,11 @@ var app = angular.module('myApp', ['ngMaterial','ngMessages']);
                         
                         $scope.hitPython = function() {
                             method = "POST";
-                            url = "http://localhost:5000/user";
+                            url = "https://gentle-thicket-68214.herokuapp.com/user";
 
                             if($scope.id){
                                 method = "PUT";
-                                url = "http://localhost:5000/user/"+$scope.id;
+                                url = "https://gentle-thicket-68214.herokuapp.com/user/"+$scope.id;
                             }
 
                             $http({
