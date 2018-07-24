@@ -88,6 +88,7 @@ def user_delete(id):
 
     return user_schema.jsonify(user)
 
+PORT = os.environ.get("PORT",5000)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port= PORT)
