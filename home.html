@@ -1,0 +1,86 @@
+<DOCTYPE!>
+    <html>
+        <head>
+                <link rel="stylesheet" href="static/css/bootstrap.min.css" />
+                <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+                <style>
+                    .table {
+                        height: 400px;
+                    }
+                    #crudForm {
+                        background-color: antiquewhite;
+                        width: 100%;
+                    }
+                    #crudForm td {
+                        padding: 5%;
+                    }
+                </style>
+                <script src="static/js/jquery-1.10.2.min.js"></script>
+                <script src="static/js/jquery-1.11.0.js"></script>
+                <script src="static/js/jquery-ui.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+                <script src="static/js/myapp.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>                
+                <script src="static/js/table.js"></script>
+        </head>
+        <body style="background-image: url(static/images/maxresdefault.jpg);background-repeat: no-repeat;">
+            <div data-ng-app="myApp" data-ng-controller="myCtrl" class="md-padding" data-ng-init="loadData()" id="popupContainer" ng-cloak>
+                <table class="table table-bordered table-condensed table-striped" fixed-header>
+                    <caption style="margin-left: 40%;">
+                        <json-data-directive></json-data-directive>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in users | orderBy : '-id'">
+                            <td>{{ x.username | uppercase }}</td>
+                            <td>{{ x.email }}</td>
+                            <td>
+                                <button class='btn btn-danger' data-ng-click="deleteUser(x.id)">Delete</button>
+                                <button class='btn btn-info' data-ng-click="editUser(x.username,x.email,x.id)">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                      
+                <form data-ng-submit="hitPython()" style="margin-right:45%;margin-left: 35%;padding: 1%;background-color: cornsilk">
+                    
+                    <input type="hidden" id="id" name="id" data-ng-model="id" value="">
+                    <table id="crudForm">
+                        <tr>
+                            <td>
+                                <label>Username</label>
+                            </td>
+                            <td>
+                                <input type="text" id="username" name="username" data-ng-model="username">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    <label>Email</label>
+                            </td>
+                            <td>
+                                    <input type="email" id="email" name="email" data-ng-model="email">
+                            </td>
+                                
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td><button style="float: right;" type="submit">Submit</button></td>
+                        </tr>
+                    </table>
+                    
+                </form>
+            </div>            
+        </body>
+    </html>
